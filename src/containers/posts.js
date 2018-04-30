@@ -26,7 +26,7 @@ class Posts extends Component {
   render() {
     if (!this.props.posts.all) {
       return (
-        <div> Undefined </div>
+        <div> Loading posts... </div>
       );
     }
     return (

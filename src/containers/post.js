@@ -45,9 +45,7 @@ class Post extends Component {
         <div className="post-title">
           {this.props.posts.selected.title}
         </div>
-        <div className="post-content">
-          {this.props.posts.selected.content}
-        </div>
+        <div className="post-content" dangerouslySetInnerHTML={{ __html: marked(this.props.posts.selected.content || '') }} />
         <div className="post-tags">
           {this.props.posts.selected.tags}
         </div>

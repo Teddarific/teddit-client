@@ -14,7 +14,7 @@ class Editor extends Component {
       content: '',
       tags: '',
       contentType: 'image',
-      cover_url: 'default',
+      cover_url: '',
     };
     if (this.props.loadedPost) {
       this.state = {
@@ -26,13 +26,29 @@ class Editor extends Component {
       };
     }
 
+    this.validatePost = this.validatePost.bind(this);
     this.submitPost = this.submitPost.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
+  validatePost() {
+    if (
+      this.state.title == '' ||
+      this.state.content == '' ||
+      this.state.tags == ''
+    ) {
+      return false;
+    }
+    return true;
+  }
+
   submitPost() {
+    if (!this.validatePost()) {
+      alert('Please fill out all required fields');
+      return;
+    }
     let coverUrl = this.state.cover_url;
-    if (coverUrl == 'default') {
+    if (coverUrl == '') {
       if (this.state.contentType == 'text') {
         coverUrl = 'src/img/text.png';
       } else if (this.state.contentType == 'link') {
@@ -60,20 +76,20 @@ class Editor extends Component {
   render() {
     return (
       <div>
-        <div> Title: </div>
+        <div> *Title: </div>
         <input onChange={this.handleChange} type="text" name="title" value={this.state.title} />
         <br />
-        <div> Select content type: </div>
+        <div> *Select content type: </div>
         <select onChange={this.handleChange} name="contentType">
           <option value="text">Text</option>
           <option value="image">Image/GIF</option>
           <option value="link">Link</option>
         </select>
         <br />
-        <div> Content: </div>
+        <div> *Content: </div>
         <input onChange={this.handleChange} type="text" name="content" value={this.state.content} />
         <br />
-        <div> Tags: </div>
+        <div> *Tags: </div>
         <input onChange={this.handleChange} type="text" name="tags" value={this.state.tags} />
         <br />
         <div> Cover URL: </div>

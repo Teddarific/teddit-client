@@ -12,6 +12,7 @@ const App = (props) => {
     <Router>
       <div>
         <NavBar />
+        <hr />
         <Switch>
           <Route exact path="/" component={Posts} />
           <Route exact path="/posts/new" component={CreatePost} />
