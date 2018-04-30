@@ -2,14 +2,14 @@
   "name": "starterpack-Teddarific",
   "version": "1.0.0",
   "main": "src/index.js",
-  "repository": "https://github.com/dartmouth-cs52-18S/starterpack-Teddarific.git",
+  "repository": "https://github.com/dartmouth-cs52-18S/lab4-Teddarific.git",
   "author": "Teddarific <teddy.ni.19@dartmouth.edu>",
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development webpack-serve ./webpack.config.js",
     "build": "yarn clean; NODE_ENV=production webpack --colors",
     "clean": "rimraf dist",
-    "deploy": "yarn build; surge -p dist -d TEDSTARTERPACK.surge.sh; yarn clean"
+    "deploy": "yarn build; surge -p dist -d teddit.surge.sh; yarn clean"
   },
   "devDependencies": {
     "autoprefixer": "^8.2.0",
@@ -45,6 +45,7 @@
     "axios": "^0.18.0",
     "jquery": "^3.3.1",
     "lodash.debounce": "^4.0.8",
+    "marked": "^0.3.19",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-redux": "^5.0.7",

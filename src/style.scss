@@ -1,24 +1,50 @@
 body, html {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   height: 100%;
 }
 
+#logo {
+  height: 50px;
+  background-image: url('img/teddit.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .prepost {
-    border: 2px solid grey;
+    border: 2px solid #D3D3D3	;
     border-radius: 5px;
-    margin: 10px;
+    margin: 15px;
     padding: 10px;
     display: flex;
+}
+
+.prepost:hover {
+  border: 2px solid black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .prepost-cover_url {
   height: 100px;
   width: 100px;
+  border: 2px solid #D3D3D3	;
+  border-radius: 2px;
 }
 
 .prepost-content-container {
-  border: 2px solid grey;
+  border: 2px solid #D3D3D3	;
   flex-grow: 1;
-  padding: 10px;
-  margin: 5px;
+  height: 100px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.prepost-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.prepost-tags {
+  color: #3dbfea;
 }

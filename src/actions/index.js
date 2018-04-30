@@ -25,7 +25,6 @@ export function fetchPosts() {
 export function fetchPost(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`).then((response) => {
-      console.log(response.data);
       dispatch({ type: ActionTypes.FETCH_POST, payload: { data: response.data } });
     }).catch((error) => {
       console.log(error);
@@ -45,10 +44,26 @@ export function createPost(post, history) {
   };
 }
 
-export function updatePost(post) { /* axios put */ }
+export function updatePost(id, post) {
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/posts/${id}${API_KEY}`, post).then((response) => {
+      dispatch({ type: ActionTypes.FETCH_POST, payload: { data: response.data } });
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+}
 
 
-export function deletePost(id, history) { /* axios delete */ }
+export function deletePost(id, history) {
+  return (dispatch) => {
+    axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`).then((response) => {
+      history.push('/');
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+}
 
 export function FETCH_POSTS() {
 

@@ -24,7 +24,6 @@ class Posts extends Component {
   }
 
   render() {
-    console.log(this.props.posts.all);
     if (!this.props.posts.all) {
       return (
         <div> Undefined </div>
@@ -34,10 +33,10 @@ class Posts extends Component {
       <div>
         {this.props.posts.all.map(post => (
           <div key={post.id} id={post.id} onClick={this.navigateToPost} className="prepost" role="menuitem" tabIndex="0">
-            <div className="prepost-cover_url"> {post.cover_url} </div>
+            <img className="prepost-cover_url" alt="preview" src={post.cover_url} />
             <div className="prepost-content-container">
               <div className="prepost-title"> {post.title} </div>
-              <div className="prepost-content"> {post.content} </div>
+              <div className="prepost-tags"> {post.tags} </div>
             </div>
           </div>
         ))}
