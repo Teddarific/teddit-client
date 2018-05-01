@@ -31,6 +31,18 @@ class Post extends Component {
     this.props.deletePost(this.props.posts.selected._id, this.props.history);
   }
 
+  renderImg() {
+    if (this.props.posts.selected.cover_url != 'https://cdn4.iconfinder.com/data/icons/devine_icons/Black/PNG/File%20Types/Defult%20Text.png' &&
+         this.props.posts.selected.cover_url != 'https://png.icons8.com/metro/1600/link.png') {
+      return (
+        <img alt="cover" src={this.props.posts.selected.cover_url} />
+      );
+    }
+    return (
+      <div />
+    );
+  }
+
   render() {
     if (!this.props.posts.selected) {
       return (
@@ -39,15 +51,18 @@ class Post extends Component {
     }
     return (
       <div className="post-container">
-        <button onClick={this.editPost}> To edit </button>
-        <button onClick={this.deletePost}> To delete </button>
-        <img alt="" src={this.props.posts.selected.cover_url} />
         <div className="post-title">
           {this.props.posts.selected.title}
         </div>
+        {this.renderImg()}
         <div className="post-content" dangerouslySetInnerHTML={{ __html: marked(this.props.posts.selected.content || '') }} />
         <div className="post-tags">
           {this.props.posts.selected.tags}
+        </div>
+        <br />
+        <div className="post-actions">
+          <div role="button" tabIndex={0} onClick={this.editPost}> edit </div>
+          <div role="button" tabIndex={0} onClick={this.deletePost}> delete </div>
         </div>
       </div>
     );

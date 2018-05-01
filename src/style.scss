@@ -27,7 +27,6 @@ hr {
   display: flex;
   flex-direction: row;
 
-
   a {
     text-decoration: none;
     color: black;
@@ -52,8 +51,6 @@ hr {
   margin-right: 10px;
 }
 
-
-
 .prepost {
     border: 2px solid #D3D3D3	;
     border-radius: 5px;
@@ -68,20 +65,23 @@ hr {
 }
 
 .prepost-cover_url {
-  height: 100px;
-  width: 100px;
-  border: 2px solid #D3D3D3	;
+  height: 120px;
+  width: 120px;
+  border: 2px solid #D3D3D3;
   border-radius: 2px;
 }
 
 .prepost-content-container {
-  border: 2px solid #D3D3D3	;
+  border: 2px solid #D3D3D3;
+  border-radius: 5px;
+  border-radius: 2px;
   flex-grow: 1;
   height: 100px;
   margin-left: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 10px;
 }
 
 .prepost-title {
@@ -91,4 +91,90 @@ hr {
 
 .prepost-tags {
   color: #3dbfea;
+}
+
+/* EDITOR STYLING */
+
+.required-star {
+  color: red;
+}
+
+.field-title {
+  font-size: 20px;
+}
+
+.editor-container {
+  margin-left: 30px;
+  input, textarea {
+    color: #525252;
+    height: 25px;
+    width: 500px;
+    line-height:15px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    background-color: white;
+    font-size: 18px;
+  }
+
+  select {
+    font-size: 18px;
+  }
+
+  button {
+    height: 45px;
+    width: 140px;
+    font-size: 25px;
+    background-color: white;
+    color: black;
+    border: 1px solid #D3D3D3;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+  }
+
+  button:hover {
+    background-color: #D3D3D3;
+  }
+
+  .field-helper {
+    font-size: 14px;
+    color: grey;
+  }
+}
+
+/* INDIVIDUAL POST PAGE */
+.post-container {
+  margin-left: 100px;
+  font-size: 20px;
+}
+
+.post-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 0;
+  padding: 5px;
+  padding-left: 0px;
+}
+
+.post-tags {
+  color: #3dbfea;
+}
+
+.post-actions {
+  display: flex;
+  flex-direction: row;
+
+  div {
+    color: grey;
+    margin-right: 10px;
+    text-decoration: underline;
+  }
+
+  div:hover {
+    color: black;
+    cursor: pointer;
+  }
 }

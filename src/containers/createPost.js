@@ -21,7 +21,7 @@ class CreatePost extends Component {
     return (
       <Editor
         buttonText="Create"
-        submitCallback={this.submitPostCallback}
+        submitCallback={this.submitCallback}
       />
     );
   }

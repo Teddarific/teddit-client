@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 
 /*
 Props:
@@ -9,11 +10,13 @@ class Editor extends Component {
   constructor(props) {
     super(props);
 
+    console.log(props);
+
     this.state = {
       title: '',
       content: '',
       tags: '',
-      contentType: 'image',
+      contentType: 'text',
       cover_url: '',
     };
     if (this.props.loadedPost) {
@@ -49,10 +52,11 @@ class Editor extends Component {
     }
     let coverUrl = this.state.cover_url;
     if (coverUrl == '') {
+      console.log(this.state.contentType);
       if (this.state.contentType == 'text') {
-        coverUrl = 'src/img/text.png';
+        coverUrl = 'https://cdn4.iconfinder.com/data/icons/devine_icons/Black/PNG/File%20Types/Defult%20Text.png';
       } else if (this.state.contentType == 'link') {
-        coverUrl = 'src/img/link.png';
+        coverUrl = 'https://png.icons8.com/metro/1600/link.png';
       } else {
         coverUrl = this.state.content;
       }
@@ -75,27 +79,33 @@ class Editor extends Component {
 
   render() {
     return (
-      <div>
-        <div> *Title: </div>
+      <div className="editor-container">
+        <div className="field-title"> Title: <span className="required-star"> * </span> </div>
         <input onChange={this.handleChange} type="text" name="title" value={this.state.title} />
         <br />
-        <div> *Select content type: </div>
+        <div className="field-title"> Select content type: <span className="required-star"> * </span> </div>
         <select onChange={this.handleChange} name="contentType">
           <option value="text">Text</option>
           <option value="image">Image/GIF</option>
           <option value="link">Link</option>
         </select>
         <br />
-        <div> *Content: </div>
-        <input onChange={this.handleChange} type="text" name="content" value={this.state.content} />
         <br />
-        <div> *Tags: </div>
+        <div className="field-title"> Content: <span className="required-star"> * </span></div>
+        <TextareaAutosize onChange={this.handleChange} name="content" value={this.state.content} minRows={5} />
+        <br />
+        <div className="field-title"> Tags: <span className="required-star"> * </span></div>
+        <div className="field-helper"> Start tags with hashtags, and separate with spaces (e.g. #post #funny) </div>
         <input onChange={this.handleChange} type="text" name="tags" value={this.state.tags} />
         <br />
-        <div> Cover URL: </div>
+        <div className="field-title"> Cover URL: </div>
+        <div className="field-helper"> Preview image displayed. Leave blank for the default (Recommended) </div>
         <input onChange={this.handleChange} type="text" name="cover_url" value={this.state.cover_url} />
         <br />
         <button onClick={this.submitPost}> {this.props.buttonText} </button>
+        <br />
+        <br />
+        <div className="field-helper"> <span className="required-star"> * </span> indicates a required field </div>
       </div>
     );
   }
