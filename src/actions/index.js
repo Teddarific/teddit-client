@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 const API_KEY = '?key=teddy_ni';
 
 // keys for actiontypes
@@ -12,9 +12,9 @@ export const ActionTypes = {
   // DELETE_POST: 'DELETE_POST',
 };
 
-export function fetchPosts() {
+export function fetchPosts(sortMethod) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/posts${API_KEY}`).then((response) => {
+    axios.get(`${ROOT_URL}/posts${API_KEY}&sortMethod=${sortMethod}`, { sortMethod }).then((response) => {
       dispatch({ type: ActionTypes.FETCH_POSTS, payload: { data: response.data } });
     }).catch((error) => {
       console.log(error);
@@ -36,7 +36,6 @@ export function fetchPost(id) {
 export function createPost(post, history) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/posts${API_KEY}`, post).then((response) => {
-      fetchPosts();
       history.push('/');
     }).catch((error) => {
       console.log(error);
@@ -44,9 +43,9 @@ export function createPost(post, history) {
   };
 }
 
-export function updatePost(id, post) {
+export function updatePost(id, fields) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/posts/${id}${API_KEY}`, post).then((response) => {
+    axios.put(`${ROOT_URL}/posts/${id}${API_KEY}`, fields).then((response) => {
       dispatch({ type: ActionTypes.FETCH_POST, payload: { data: response.data } });
     }).catch((error) => {
       console.log(error);
@@ -65,6 +64,16 @@ export function deletePost(id, history) {
   };
 }
 
-export function FETCH_POSTS() {
-
+export function votePost(id, voteField, sortMethod, posts = true) {
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/posts/vote/${id}${API_KEY}`, voteField).then((response) => {
+      if (posts) {
+        fetchPosts(sortMethod)(dispatch);
+      } else {
+        fetchPost(id)(dispatch);
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
 }

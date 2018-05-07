@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
+import { FaChevronCircleUp, FaChevronCircleDown } from 'react-icons/lib/fa';
 import marked from 'marked';
 
-import { fetchPost, updatePost, deletePost } from '../actions';
+import { fetchPost, updatePost, deletePost, votePost } from '../actions';
 
 class Post extends Component {
   constructor(props) {
@@ -13,6 +13,8 @@ class Post extends Component {
     this.submitChange = this.submitChange.bind(this);
     this.editPost = this.editPost.bind(this);
     this.deletePost = this.deletePost.bind(this);
+    this.upVote = this.upVote.bind(this);
+    this.downVote = this.downVote.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +31,16 @@ class Post extends Component {
 
   deletePost() {
     this.props.deletePost(this.props.posts.selected._id, this.props.history);
+  }
+
+  upVote(e) {
+    e.stopPropagation();
+    this.props.votePost(e.currentTarget.id, { vote: 'upvote' }, null, false);
+  }
+
+  downVote(e) {
+    e.stopPropagation();
+    this.props.votePost(e.currentTarget.id, { vote: 'downvote' }, null, false);
   }
 
   renderImg() {
@@ -51,18 +63,25 @@ class Post extends Component {
     }
     return (
       <div className="post-container">
-        <div className="post-title">
-          {this.props.posts.selected.title}
+        <div role="menuitem" tabIndex={0} className="post-vote-container" onClick={e => e.stopPropagation()}>
+          <FaChevronCircleUp id={this.props.posts.selected._id} size={30} onClick={this.upVote} />
+          <div className="prepost-vote-count"> {this.props.posts.selected.upvotes - this.props.posts.selected.downvotes} </div>
+          <FaChevronCircleDown id={this.props.posts.selected._id} size={30} onClick={this.downVote} />
         </div>
-        {this.renderImg()}
-        <div className="post-content" dangerouslySetInnerHTML={{ __html: marked(this.props.posts.selected.content || '') }} />
-        <div className="post-tags">
-          {this.props.posts.selected.tags}
-        </div>
-        <br />
-        <div className="post-actions">
-          <div role="button" tabIndex={0} onClick={this.editPost}> edit </div>
-          <div role="button" tabIndex={0} onClick={this.deletePost}> delete </div>
+        <div className="post-all-container">
+          <div className="post-title">
+            {this.props.posts.selected.title}
+          </div>
+          {this.renderImg()}
+          <div className="post-content" dangerouslySetInnerHTML={{ __html: marked(this.props.posts.selected.content || '') }} />
+          <div className="post-tags">
+            {this.props.posts.selected.tags}
+          </div>
+          <br />
+          <div className="post-actions">
+            <div role="button" tabIndex={0} onClick={this.editPost}> edit </div>
+            <div role="button" tabIndex={0} onClick={this.deletePost}> delete </div>
+          </div>
         </div>
       </div>
     );
@@ -75,4 +94,6 @@ const mapStateToProps = state => (
   }
 );
 
-export default withRouter(connect(mapStateToProps, { fetchPost, updatePost, deletePost })(Post));
+export default withRouter(connect(mapStateToProps, {
+  fetchPost, updatePost, deletePost, votePost,
+})(Post));

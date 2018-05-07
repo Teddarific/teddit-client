@@ -9,9 +9,6 @@ Props:
 class Editor extends Component {
   constructor(props) {
     super(props);
-
-    console.log(props);
-
     this.state = {
       title: '',
       content: '',
@@ -66,6 +63,7 @@ class Editor extends Component {
       content: this.state.content,
       tags: this.state.tags,
       cover_url: coverUrl,
+      contentType: this.state.contentType,
     };
 
     this.props.submitCallback(post);
@@ -99,7 +97,7 @@ class Editor extends Component {
         <input onChange={this.handleChange} type="text" name="tags" value={this.state.tags} />
         <br />
         <div className="field-title"> Cover URL: </div>
-        <div className="field-helper"> Preview image displayed. Leave blank for the default (Recommended) </div>
+        <div className="field-helper"> Preview image displayed. Leave blank for default. </div>
         <input onChange={this.handleChange} type="text" name="cover_url" value={this.state.cover_url} />
         <br />
         <button onClick={this.submitPost}> {this.props.buttonText} </button>
