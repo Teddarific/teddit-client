@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'http://ted-dit.herokuapp.com/api';
 const API_KEY = '?key=teddy_ni';
 
 // keys for actiontypes
