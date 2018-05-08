@@ -24,6 +24,7 @@ class Editor extends Component {
         contentType: this.props.loadedPost.contentType,
         cover_url: this.props.loadedPost.cover_url,
       };
+      console.log(this.props.loadedPost.contentType);
     }
 
     this.validatePost = this.validatePost.bind(this);
@@ -82,7 +83,7 @@ class Editor extends Component {
         <input onChange={this.handleChange} type="text" name="title" value={this.state.title} />
         <br />
         <div className="field-title"> Select content type: <span className="required-star"> * </span> </div>
-        <select onChange={this.handleChange} name="contentType">
+        <select onChange={this.handleChange} name="contentType" value={this.state.contentType}>
           <option value="text">Text</option>
           <option value="image">Image/GIF</option>
           <option value="link">Link</option>
