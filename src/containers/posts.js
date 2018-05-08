@@ -11,7 +11,7 @@ class Posts extends Component {
     super(props);
 
     this.state = {
-      sortMethod: 'new',
+      sortMethod: 'hot',
     };
 
     this.navigateToPost = this.navigateToPost.bind(this);
@@ -70,6 +70,7 @@ class Posts extends Component {
         <div className="sort-container">
           Sort by
           <select onChange={this.sortMethodChange} name="sortMethod" className="sort-select">
+            <option value="hot">Hot</option>
             <option value="new">New</option>
             <option value="top">Top</option>
           </select>
