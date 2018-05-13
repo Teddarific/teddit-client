@@ -55,6 +55,18 @@ class Post extends Component {
     );
   }
 
+  renderToolPanel() {
+    if (this.props.auth.username == this.props.posts.selected.creator.username) {
+      return (
+        <div className="post-actions">
+          <div role="button" tabIndex={0} onClick={this.editPost}> edit </div>
+          <div role="button" tabIndex={0} onClick={this.deletePost}> delete </div>
+        </div>
+      );
+    }
+    return (<div />);
+  }
+
   render() {
     if (!this.props.posts.selected) {
       return (
@@ -78,10 +90,10 @@ class Post extends Component {
             {this.props.posts.selected.tags}
           </div>
           <br />
-          <div className="post-actions">
-            <div role="button" tabIndex={0} onClick={this.editPost}> edit </div>
-            <div role="button" tabIndex={0} onClick={this.deletePost}> delete </div>
+          <div className="post-creator">
+            Created by {this.props.posts.selected.creator.username}
           </div>
+          {this.renderToolPanel()}
         </div>
       </div>
     );
@@ -91,6 +103,7 @@ class Post extends Component {
 const mapStateToProps = state => (
   {
     posts: state.posts,
+    auth: state.auth,
   }
 );
 

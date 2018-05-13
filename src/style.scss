@@ -22,6 +22,17 @@ hr {
   display: inline-block;
 }
 
+.nav-logged-in {
+    float: right;
+}
+
+.link-all-container {
+  display: flex;
+  flex-direction: column;
+  float: right;
+  align-items: flex-end;
+}
+
 .link-container {
   float: right;
   display: flex;
@@ -34,6 +45,8 @@ hr {
     border-radius: 5px;
     width: 100px;
     transition: all 0.2s ease-in-out;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   a:hover {
@@ -136,7 +149,7 @@ hr {
     height: 25px;
     width: 500px;
     line-height:15px;
-    margin-bottom: 16px;
+    margin-bottom: 5px;
     margin-right: 6px;
     margin-top: 2px;
     outline: 0 none;
@@ -216,6 +229,7 @@ hr {
 .post-actions {
   display: flex;
   flex-direction: row;
+  margin-bottom: 10px;
 
   div {
     color: grey;
@@ -244,4 +258,9 @@ hr {
   svg:hover {
     .pointer {cursor: pointer;}
   }
+}
+
+.signup-invalid {
+  color: red;
+  font-size: 15px;
 }

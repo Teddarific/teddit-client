@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
+import { toast } from 'react-toastify';
 
 /*
 Props:
@@ -45,7 +46,7 @@ class Editor extends Component {
 
   submitPost() {
     if (!this.validatePost()) {
-      alert('Please fill out all required fields');
+      toast('test');
       return;
     }
     let coverUrl = this.state.cover_url;

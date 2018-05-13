@@ -91,7 +91,7 @@ class Posts extends Component {
                 </div>
               </div>
               <div className="prepost-info-bar">
-                <div className="prepost-date"> Created at {formatDate(post.dateCreated)} by TODO</div>
+                <div className="prepost-date"> Created at {formatDate(post.dateCreated)} by {post.creator.username}</div>
               </div>
             </div>
           </div>
@@ -104,6 +104,7 @@ class Posts extends Component {
 const mapStateToProps = state => (
   {
     posts: state.posts,
+    auth: state.auth,
   }
 );
 

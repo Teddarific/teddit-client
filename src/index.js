@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
+import { ActionTypes } from './actions';
+
 import reducers from './reducers';
 import './style.scss';
 
@@ -16,6 +18,12 @@ const store = createStore(reducers, {}, compose(
   applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : f => f,
 ));
+
+const token = localStorage.getItem('token');
+const username = localStorage.getItem('username');
+if (token && username) {
+  store.dispatch({ type: ActionTypes.AUTH_USER, payload: { username } });
+}
 
 // we now wrap App in a Provider
 ReactDOM.render(
