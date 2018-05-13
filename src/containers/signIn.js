@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { signInUser } from '../actions';
 
@@ -25,7 +26,7 @@ class SignIn extends Component {
 
   submitSignIn(e) {
     if (this.state.username == '' || this.state.password == '') {
-      alert('Please fill in all fields');
+      toast.error('Please fill in all fields');
       return;
     }
     this.props.signInUser({ username: this.state.username, password: this.state.password }, this.props.history);

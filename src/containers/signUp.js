@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { signUpUser, validateField } from '../actions';
 
@@ -45,7 +47,7 @@ class SignUp extends Component {
          this.state.password === '' ||
          !this.props.auth.validUsername ||
          !this.props.auth.validEmail) {
-      alert('Please address errors before continuing');
+      toast.error('Please address errors before continuing');
       return false;
     }
     return true;

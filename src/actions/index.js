@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { toast } from 'react-toastify';
 // const ROOT_URL = 'http://ted-dit.herokuapp.com/api';
 const ROOT_URL = 'http://localhost:9090/api';
 
@@ -93,6 +93,7 @@ export function signOutUser(history) {
   return (dispatch) => {
     localStorage.removeItem('token');
     dispatch({ type: ActionTypes.DEAUTH_USER });
+    toast.success('Successfully signed out');
     history.push('/');
   };
 }
@@ -120,9 +121,11 @@ export function signInUser({ username, password }, history) {
       dispatch({ type: ActionTypes.AUTH_USER, payload: { username: response.data.username } });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('username', response.data.username);
+      toast.success(`Logged in as ${response.data.username}`);
+
       history.push('/');
     }).catch((error) => {
-      alert('Incorrect username or password');
+      toast.error('Incorrect username or password');
     });
   };
 }
@@ -137,7 +140,6 @@ export function signUpUser(user, history) {
   // on error should dispatch(authError(`Sign Up Failed: ${error.response.data}`));
   return (dispatch) => {
     axios.post(`${ROOT_URL}/signup`, user).then((response) => {
-      console.log(response);
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data });
       localStorage.setItem('token', response.data.token);
       history.push('/');
