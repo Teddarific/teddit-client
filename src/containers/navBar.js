@@ -46,6 +46,7 @@ const NavBar = (props) => {
       </div>
       <ToastContainer
         position="top-right"
+        pauseOnHover={false}
       />
     </nav>
 

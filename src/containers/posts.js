@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { FaChevronCircleUp, FaChevronCircleDown } from 'react-icons/lib/fa';
+import { toast } from 'react-toastify';
 
 import { fetchPosts, fetchPost, votePost } from '../actions';
 
@@ -30,11 +31,17 @@ class Posts extends Component {
 
   upVote(e) {
     e.stopPropagation();
+    if (!this.props.auth.authenticated) {
+      toast.warn('Please login to vote');
+    }
     this.props.votePost(e.currentTarget.id, { vote: 'upvote' }, this.state.sortMethod);
   }
 
   downVote(e) {
     e.stopPropagation();
+    if (!this.props.auth.authenticated) {
+      toast.warn('Please login to vote');
+    }
     this.props.votePost(e.currentTarget.id, { vote: 'downvote' }, this.state.sortMethod);
   }
 
