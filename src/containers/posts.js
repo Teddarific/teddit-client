@@ -33,6 +33,7 @@ class Posts extends Component {
     e.stopPropagation();
     if (!this.props.auth.authenticated) {
       toast.warn('Please login to vote');
+      return;
     }
     this.props.votePost(e.currentTarget.id, { vote: 'upvote' }, this.state.sortMethod);
   }
@@ -41,6 +42,7 @@ class Posts extends Component {
     e.stopPropagation();
     if (!this.props.auth.authenticated) {
       toast.warn('Please login to vote');
+      return;
     }
     this.props.votePost(e.currentTarget.id, { vote: 'downvote' }, this.state.sortMethod);
   }

@@ -25,7 +25,6 @@ class Editor extends Component {
         contentType: this.props.loadedPost.contentType,
         cover_url: this.props.loadedPost.cover_url,
       };
-      console.log(this.props.loadedPost.contentType);
     }
 
     this.validatePost = this.validatePost.bind(this);
@@ -46,12 +45,11 @@ class Editor extends Component {
 
   submitPost() {
     if (!this.validatePost()) {
-      toast('test');
+      toast.error('Please fill in all required fields');
       return;
     }
     let coverUrl = this.state.cover_url;
     if (coverUrl == '') {
-      console.log(this.state.contentType);
       if (this.state.contentType == 'text') {
         coverUrl = 'https://cdn4.iconfinder.com/data/icons/devine_icons/Black/PNG/File%20Types/Defult%20Text.png';
       } else if (this.state.contentType == 'link') {

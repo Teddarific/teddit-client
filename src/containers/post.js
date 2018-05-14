@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { FaChevronCircleUp, FaChevronCircleDown } from 'react-icons/lib/fa';
 import marked from 'marked';
+import { toast } from 'react-toastify';
 
 import { fetchPost, updatePost, deletePost, votePost } from '../actions';
 
@@ -35,11 +36,19 @@ class Post extends Component {
 
   upVote(e) {
     e.stopPropagation();
+    if (!this.props.auth.authenticated) {
+      toast.warn('Please login to vote');
+      return;
+    }
     this.props.votePost(e.currentTarget.id, { vote: 'upvote' }, null, false);
   }
 
   downVote(e) {
     e.stopPropagation();
+    if (!this.props.auth.authenticated) {
+      toast.warn('Please login to vote');
+      return;
+    }
     this.props.votePost(e.currentTarget.id, { vote: 'downvote' }, null, false);
   }
 

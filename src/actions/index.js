@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+
 // const ROOT_URL = 'http://ted-dit.herokuapp.com/api';
-const ROOT_URL = 'http://ted-dit.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 
 const API_KEY = '?key=teddy_ni';
 
@@ -108,14 +109,6 @@ export function authError(error) {
 }
 
 export function signInUser({ username, password }, history) {
-  // takes in an object with email and password (minimal user object)
-  // returns a thunk method that takes dispatch as an argument (just like our create post method really)
-  // does an axios.post on the /signin endpoint
-  // on success does:
-  //  dispatch({ type: ActionTypes.AUTH_USER });
-  //  localStorage.setItem('token', response.data.token);
-  // on error should dispatch(authError(`Sign In Failed: ${error.response.data}`));
-
   return (dispatch) => {
     axios.post(`${ROOT_URL}/signin`, { username, password }).then((response) => {
       dispatch({ type: ActionTypes.AUTH_USER, payload: { username: response.data.username } });
@@ -131,13 +124,6 @@ export function signInUser({ username, password }, history) {
 }
 
 export function signUpUser(user, history) {
-  // takes in an object with email and password (minimal user object)
-  // returns a thunk method that takes dispatch as an argument (just like our create post method really)
-  // does an axios.post on the /signup endpoint (only difference from above)
-  // on success does:
-  //  dispatch({ type: ActionTypes.AUTH_USER });
-  //  localStorage.setItem('token', response.data.token);
-  // on error should dispatch(authError(`Sign Up Failed: ${error.response.data}`));
   return (dispatch) => {
     axios.post(`${ROOT_URL}/signup`, user).then((response) => {
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data });

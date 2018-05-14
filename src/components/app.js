@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import NavBar from '../containers/navBar';
 import Posts from '../containers/posts';
 import CreatePost from '../containers/createPost';
