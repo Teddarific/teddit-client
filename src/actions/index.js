@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 // const ROOT_URL = 'http://ted-dit.herokuapp.com/api';
-const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'http://ted-dit.herokuapp.com/api';
 
 const API_KEY = '?key=teddy_ni';
 
